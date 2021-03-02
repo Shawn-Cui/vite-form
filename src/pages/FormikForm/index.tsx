@@ -5,29 +5,7 @@
  */
 import React from 'react';
 import { useFormik } from 'formik';
-
-const validate = (values: any) => {
-  const errors: any = {};
-  if (!values.firstName) {
-    errors.firstName = '必填';
-  } else if (values.firstName.length > 15) {
-    errors.firstName = '最多只能填写15个字符';
-  }
-
-  if (!values.lastName) {
-    errors.lastName = '必填';
-  } else if (values.firstName.length > 20) {
-    errors.firstName = '最多只能填写20个字符';
-  }
-
-  if (!values.email) {
-    errors.email = '必填';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = '不合法的邮箱格式';
-  }
-
-  return errors;
-}
+import * as Yup from 'yup';
 
 const FormikForm = () => {
   const formik = useFormik({
@@ -36,7 +14,17 @@ const FormikForm = () => {
       lastName: '',
       email: '',
     },
-    validate,
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .max(15, '最多只能填写15个字符')
+        .required('必填'),
+      lastName: Yup.string()
+        .max(20, '最多只能填写20个字符')
+        .required('必填'),
+      email: Yup.string()
+        .email('不合法的邮箱格式')
+        .required('必填'),
+    }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
