@@ -35,11 +35,8 @@ const FormikForm = () => {
       <label htmlFor="firstName">姓氏</label>
       <input
         id="firstName"
-        name="firstName"
         type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.firstName}
+        {...formik.getFieldProps('firstName')}
       />
       {formik.touched.firstName && formik.errors.firstName ? (
         <div>{formik.errors.firstName}</div>
@@ -48,11 +45,8 @@ const FormikForm = () => {
       <label htmlFor="lastName">名称</label>
       <input
         id="lastName"
-        name="lastName"
         type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.lastName}
+        {...formik.getFieldProps('lastName')}
       />
       {formik.touched.lastName && formik.errors.lastName ? (
         <div>{formik.errors.lastName}</div>
@@ -61,11 +55,8 @@ const FormikForm = () => {
       <label htmlFor="email">邮箱</label>
       <input
         id="email"
-        name="email"
         type="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
+        {...formik.getFieldProps('email')}
       />
       {formik.touched.email && formik.errors.email ? (
         <div>{formik.errors.email}</div>
