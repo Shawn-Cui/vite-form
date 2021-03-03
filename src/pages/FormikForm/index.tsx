@@ -4,7 +4,7 @@
  * Formik 版本
  */
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const FormikForm = () => {
@@ -33,41 +33,21 @@ const FormikForm = () => {
         });
       }}
     >
-      {formik => (
-        <form onSubmit={formik.handleSubmit}>
-          <label htmlFor="firstName">姓氏</label>
-          <input
-            id="firstName"
-            type="text"
-            {...formik.getFieldProps('firstName')}
-          />
-          {formik.touched.firstName && formik.errors.firstName ? (
-            <div>{formik.errors.firstName}</div>
-          ) : null}
+      <Form>
+        <label htmlFor="firstName">姓氏</label>
+        <Field name="firstName" type="text" />
+        <ErrorMessage name="firstName" />
 
-          <label htmlFor="lastName">名称</label>
-          <input
-            id="lastName"
-            type="text"
-            {...formik.getFieldProps('lastName')}
-          />
-          {formik.touched.lastName && formik.errors.lastName ? (
-            <div>{formik.errors.lastName}</div>
-          ) : null}
+        <label htmlFor="lastName">名称</label>
+        <Field name="lastName" type="text" />
+        <ErrorMessage name="lastName" />
 
-          <label htmlFor="email">邮箱</label>
-          <input
-            id="email"
-            type="email"
-            {...formik.getFieldProps('email')}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <div>{formik.errors.email}</div>
-          ) : null}
+        <label htmlFor="email">邮箱</label>
+        <Field name="email" type="email" />
+        <ErrorMessage name="email" />
 
-          <button type="submit">提交</button>
-        </form>
-      )}
+        <button type="submit">提交</button>
+      </Form>
     </Formik>
   );
 };
