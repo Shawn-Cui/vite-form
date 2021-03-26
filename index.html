@@ -7,6 +7,10 @@
     <title>Vite App</title>
   </head>
   <body>
+    <script>
+      // 需要加上这个，不然 antd 会报错（global is not defined）
+      global = globalThis
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
